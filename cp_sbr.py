@@ -33,16 +33,14 @@ with pdfplumber.open('input.pdf') as pdf:
 
     for i in range(last_page):
         curr_page = pdf.pages[i]
-        customer_idx = curr_page.extract_text().index('Customer: ') + 10
-        customer_id = curr_page.extract_text()[customer_idx:customer_idx + 4]
-        is_mpq = customer_id.isnumeric()
+        parsed_text = curr_page.extract_text()
 
-        if (is_mpq == True):
-            customer_id = '00' + customer_id
-        else:
-            customer_id = '000' + customer_id
-        customer_id = customer_id[0:6]
-
+        customer_idx = parsed_text.index('Customer: ') + len('Customer: ')
+        customer_idx_end = customer_idx
+        while customer_idx_end < len(parsed_text) and parsed_text[customer_idx_end].isdigit():
+            customer_idx_end += 1
+        customer_id = parsed_text[customer_idx:customer_idx_end]
+        
         route = routes.get(customer_id)
         customer_name = customer_names.get(customer_id)
         path = ('input.pdf')
