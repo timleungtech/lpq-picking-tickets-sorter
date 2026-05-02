@@ -29,7 +29,7 @@ customer_names = {
   "3010": "   43 ",
   "3011": "   41 ",
   "3013": "   29 ",
-  "3404": "WESTPORT",
+  "3404": "WESTPORT ",
   "401": "N.CANAAN",
   "402": "  RYE ",
   "403": "GREENWICH"
