@@ -5,8 +5,8 @@ import pdfplumber
 import os
 from PyPDF2 import PdfFileReader, PdfFileWriter, PdfFileMerger
 import PyPDF2
-from routes import routes
-from customer_names import customer_names
+from config.routes import routes
+from config.customer_names import customer_names
 
 page_id = 1 # fix for orders >1 page long
 output_file_name = ""

@@ -12,9 +12,8 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.colors import red
 from reportlab.lib.colors import Color, red
-
-from routes import routes
-from customer_names import customer_names
+from config.routes import routes
+from config.customer_names import customer_names
 
 page_id = 1 # fix for orders >1 page long
 output_file_name= ""

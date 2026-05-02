@@ -10,78 +10,8 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.colors import red
 from reportlab.lib.colors import Color, red
-
-dictroute = {
-  "000113": "3",
-  "000114": "1",
-  "000118": "2",
-  "000120": "3",
-  "000123": "1",
-  "000127": "2",
-  "000130": "3",
-  "000134": "1",
-  "000136": "1",
-  "000138": "3",
-  "000142": "2",
-  "000144": "1",
-  "000146": "1",
-  "000148": "2",
-  "000149": "2",
-  "000151": "4",
-  "000153": "3",
-  "000154": "1",
-  "000156": "3",
-  "000401": "4",
-  "000402": "4",
-  "000403": "4",
-  "003002": "3",
-  "003003": "1",
-  "003004": "1",
-  "003005": "1",
-  "003006": "3",
-  "003007": "2",
-  "003008": "3",
-  "003009": "2",
-  "003010": "2",
-  "003011": "2",
-  "003013": "3"
-}
-
-dictCustomer = {
-  "000113": "SOHO  ",
-  "000114": "MADISON",
-  "000118": "FIRST AVE",
-  "000120": "  8TH ",
-  "000123": "LINCOLN",
-  "000127": "BRYANT ",
-  "000130": "TRIBECA",
-  "000134": "MINERAL",
-  "000136": "   88 ",
-  "000138": "BLEECKER",
-  "000142": " GCW  ",
-  "000144": "  E97 ",
-  "000146": "  E83 ",
-  "000148": "  E65 ",
-  "000149": "  W55 ",
-  "000151": "ROOSEVELT",
-  "000153": "85 BROAD",
-  "000154": "SAILBOAT",
-  "000156": "SOUTH END",
-  "000401": "N.CANAAN",
-  "000402": "  RYE ",
-  "000403": "GREENWICH",
-  "003002": "921 BWAY",
-  "003003": "   58 ",
-  "003004": "   87 ",
-  "003005": "   76 ",
-  "003006": "JORALEMON",
-  "003007": "   56 ",
-  "003008": "   36 ",
-  "003009": "   38 ",
-  "003010": "   43 ",
-  "003011": "   41 ",
-  "003013": "   29 "
-}
+from config.routes import routes
+from config.customer_names import customer_names
 
 orderType = str(input("File name: ")) # user input filename and saves to orderType variable
 os.rename(f"{orderType}.pdf","input.pdf") # rename file to input.pdf
@@ -93,8 +23,8 @@ with pdfplumber.open('input.pdf') as pdf: # opens inputted pdf
     for i in range(lastPage): # iterate to lastPage
         curr_page = pdf.pages[i] # assign curr_page variable
         customerId = curr_page.extract_text()[10:16] # extract customer ID
-        route = dictroute.get(f"{customerId}") # get route from dictionary
-        customer = dictCustomer.get(f"{customerId}") # get customer from dictionary
+        route = routes.get(f"{customerId}") # get route from dictionary
+        customer = customer_names.get(f"{customerId}") # get customer from dictionary
         path = ('input.pdf') # set path variable
         pdf_reader = PdfFileReader(path)
         pdf_writer = PdfFileWriter()
